@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noor Al-Quran Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-green: #0A5C36;
+            --light-beige: #F5F5DC;
+            --deep-blue: #0A2463;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-beige);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .arabic {
+            font-family: 'Amiri', serif;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark-green), var(--deep-blue));
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+        
+        .logo .arabic {
+            font-size: 3rem;
+            display: block;
+            line-height: 1.2;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="none" stroke="%23D4AF37" stroke-width="0.5" d="M0,0 L100,100 M100,0 L0,100" /></svg>');
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-green);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero .arabic {
+            font-size: 2.5rem;
+            color: var(--deep-blue);
+            margin: 1.5rem 0;
+            display: block;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--dark-green), var(--deep-blue));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            animation: fadeIn 1s ease 1s forwards;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* Founder Section */
+        .founder-section {
+            padding: 5rem 0;
+            background-color: white;
+            position: relative;
+        }
+        
+        .founder-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="none" stroke="%230A5C36" stroke-width="0.3" d="M0,0 L100,100 M100,0 L0,100" /></svg>');
+            opacity: 0.05;
+            z-index: 1;
+        }
+        
+        .founder-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .founder-title {
+            font-size: 2rem;
+            color: var(--deep-blue);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .founder-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+        
+        .founder-name {
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            margin: 1rem 0;
+            animation: pulse 2s infinite;
+        }
+        
+        .founder-bio {
+            max-width: 800px;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .founder-quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--deep-blue);
+            padding: 2rem;
+            border-left: 3px solid var(--gold);
+            background-color: rgba(212, 175, 55, 0.1);
+            max-width: 700px;
+            margin: 2rem auto;
+        }
+        
+        /* Courses Section */
+        .courses-section {
+            padding: 5rem 0;
+            background-color: var(--light-beige);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--gold);
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .course-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .course-icon {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--gold);
+            background: linear-gradient(135deg, rgba(10,36,99,0.1), rgba(10,92,54,0.1));
+        }
+        
+        .course-content {
+            padding: 2rem;
+        }
+        
+        .course-title {
+            font-size: 1.5rem;
+            color: var(--deep-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .course-desc {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .course-link {
+            color: var(--dark-green);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .course-link:hover {
+            color: var(--gold);
+        }
+        
+        .course-link::after {
+            content: '→';
+            margin-left: 5px;
+            transition: margin-left 0.3s;
+        }
+        
+        .course-link:hover::after {
+            margin-left: 10px;
+        }
+        
+        /* Testimonials */
+        .testimonials-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--deep-blue), var(--dark-green));
+            color: white;
+        }
+        
+        .testimonials-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-slide {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .testimonial-quote {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .testimonial-quote::before,
+        .testimonial-quote::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.5;
+            position: absolute;
+        }
+        
+        .testimonial-quote::before {
+            top: -20px;
+            left: -10px;
+        }
+        
+        .testimonial-quote::after {
+            bottom: -40px;
+            right: -10px;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 0;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .contact-info {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-link {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1rem;
+            transition: transform 0.3s;
+        }
+        
+        .whatsapp-link:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+            }
+            
+            .nav-links li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero .arabic {
+                font-size: 2rem;
+            }
+            
+            .founder-name {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .logo .arabic {
+                font-size: 2.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero .arabic {
+                font-size: 1.8rem;
+            }
+            
+            .founder-name {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                Noor Al-Quran
+                <span class="arabic">نور القرآن</span>
+            </div>
+            <p class="tagline">Preserving the Divine Word Through Authentic Teaching</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">Noor Al-Quran</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#founder">Our Founder</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Learn Quran Kareem With Excellence</h1>
+            <p class="arabic">"وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ"</p>
+            <p>Join our prestigious academy to learn the Holy Quran with proper Tajweed, Tafseer, and Hifz from certified Qaris and scholars.</p>
+            <a href="#courses" class="cta-button">Explore Courses</a>
+        </div>
+    </section>
+    
+    <section class="founder-section" id="founder">
+        <div class="container">
+            <div class="founder-content">
+                <h2 class="founder-title">Our Esteemed Founder</h2>
+                <h3 class="founder-name">Qari Abdullah</h3>
+                <p class="founder-bio">
+                    Qari Abdullah is a renowned scholar and Qari with over 25 years of experience in teaching the Holy Quran. 
+                    A graduate of the prestigious Al-Azhar University, he holds Ijazah in multiple Qira'at and has dedicated 
+                    his life to spreading the correct recitation and understanding of Quran Kareem. His unique teaching 
+                    methodology has produced hundreds of Huffaz and Qaris who are now serving the Ummah worldwide.
+                </p>
+                <blockquote class="founder-quote">
+                    "The Quran is not just to be recited, but to be lived. My mission is to create a generation that carries 
+                    the Quran in their hearts, minds, and actions."
+                </blockquote>
+            </div>
+        </div>
+    </section>
+    
+    <section class="courses-section" id="courses">
+        <div class="container">
+            <h2 class="section-title">Our Premium Courses</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-icon">
+                        <span class="arabic">ٱ</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Noorani Qaida</h3>
+                        <p class="course-desc">
+                            Master the fundamentals of Arabic letters, pronunciation, and basic Tajweed rules. Perfect for absolute beginners.
+                        </p>
+                        <a href="#" class="course-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <span class="arabic">ت</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Tajweed Excellence</h3>
+                        <p class="course-desc">
+                            Advanced Tajweed course covering all rules of proper Quranic recitation with practical application.
+                        </p>
+                        <a href="#" class="course-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <span class="arabic">ح</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Hifz Program</h3>
+                        <p class="course-desc">
+                            Structured memorization program with personalized guidance and revision schedules to become a Hafiz/Hafiza.
+                        </p>
+                        <a href="#" class="course-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <span class="arabic">ت</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Tafseer Studies</h3>
+                        <p class="course-desc">
+                            In-depth explanation of Quranic verses covering linguistic, historical, and jurisprudential aspects.
+                        </p>
+                        <a href="#" class="course-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <span class="arabic">ق</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Qira'at Specialization</h3>
+                        <p class="course-desc">
+                            Learn the different authentic recitations (Qira'at) of the Quran with chain of transmission (Sanad).
+                        </p>
+                        <a href="#" class="course-link">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <span class="arabic">ا</span>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Arabic for Quran</h3>
+                        <p class="course-desc">
+                            Understand the language of the Quran through focused study of classical Arabic grammar and vocabulary.
+                        </p>
+                        <a href="#" class="course-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials-section" id="testimonials">
+        <div class="container testimonials-container">
+            <h2 class="section-title">What Our Students Say</h2>
+            <div class="testimonial-slide">
+                <p class="testimonial-quote">
+                    Studying under Qari Abdullah transformed my relationship with the Quran. His attention to detail in Tajweed 
+                    is unmatched, and his spiritual approach makes each lesson a blessing.
+                </p>
+                <p class="testimonial-author">- Ahmed K., Hafiz</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-info">
+                <p>For enrollment and inquiries, contact us on WhatsApp:</p>
+                <a href="https://wa.me/923169565484" class="whatsapp-link">
+                    <i>📱</i> +92 316 9565484
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Simple animation trigger on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.course-card, .founder-title, .section-title');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if(elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state for animated elements
+            const animatedElements = document.querySelectorAll('.course-card, .founder-title, .section-title');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+        });
+    </script>
+</body>
+</html>
